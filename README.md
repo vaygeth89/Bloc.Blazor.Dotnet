@@ -30,6 +30,78 @@ is inspired from the Dart package https://pub.dev/packages/flutter_bloc
 * **BlocListener Component**
     * Razor component that simplifies listening to changes
 
+### How To Use
+
+#### Setup
+Add the required dependencies into your Project
+```
+  dotnet add package Vaygeth.Bloc
+  dotnet add package Vaygeth.Bloc.Blazor
+```
+
+#### Creating State Class
+Create the class that will hold the data. In this example we will use Counter example
+```csharp
+
+public record CountState(int Count = 0) : BlocState;
+
+```
+
+#### Creating BLoC/Cubit Class
+
+```csharp
+
+public class CountCubit : Cubit<CountState>
+{
+    public CountCubit() : base(new CountState())
+    {
+    }
+
+    public void Increment()
+    {
+        int currentCount = State.Count;
+        Emit(new CountState(currentCount + 1));
+    }
+
+    public void Decrement()
+    {
+        int currentCount = State.Count;
+        if (currentCount > 0)
+        {
+            Emit(new CountState(currentCount - 1));
+        }
+    }
+}
+
+```
+
+#### Injecting BLocBuilder
+
+#### Program.cs
+```csharp
+    var builder = WebAssemblyHostBuilder.CreateDefault(args);
+    // rest of the code....
+    // ...
+
+    builder.Services.AddScoped(sp => new BlocBuilder<CountCubit, CountState>(new CountCubit()));
+    // rest of the code....
+    // ...
+
+    await builder.Build().RunAsync();
+```
+
+#### Using BLocBuilder
+Inject your builder in your component specifying the the BLoC/Cubit and State
+
+```csharp
+    [Inject]
+    private BlocBuilder<CountCubit, CountState> Builder { get; set; }
+```
+
+
+
+#### Using BlocListener
+
 ### Disclosure & Notes
 
 As if now the package is in early release, and enhancements is still required
