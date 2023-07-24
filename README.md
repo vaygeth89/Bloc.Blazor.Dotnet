@@ -115,7 +115,7 @@ You can use the **Builder** to invoke the desired events, in this example **Incr
 
 ### Disclosure & Notes
 
-As if now the package is in early release, and enhancements is still required
+As of now the package is in early release, and enhancements is still required
 
 
 
