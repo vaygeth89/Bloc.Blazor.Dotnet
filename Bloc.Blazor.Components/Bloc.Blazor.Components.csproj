@@ -4,6 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>Vaygeth.Bloc.Blazor</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>Abdulmohsen Alkhamees</Authors>
+    <Company>Abdulmohsen Alkhamees</Company>
+    <RepositoryUrl>https://github.com/vaygeth89/Bloc.Blazor.Dotnet</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
