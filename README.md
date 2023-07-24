@@ -98,6 +98,17 @@ Inject your builder in your component specifying the the BLoC/Cubit and State
     private BlocBuilder<CountCubit, CountState> Builder { get; set; }
 ```
 
+#### Handling Events
+You can use the **Builder** to invoke the desired events, in this example **Increment**/**Decrement**
+
+```csharp
+    private void IncrementCount()
+    {
+        Builder.Bloc.Increment();
+    }
+```
+
+#### Listening to State Changes
 
 
 #### Using BlocListener
