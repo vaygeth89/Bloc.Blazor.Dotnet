@@ -1,0 +1,41 @@
+﻿@using Bloc.Models
+@using Bloc.Blazor.Example.Blocs
+@using Bloc.Blazor.Example.States
+@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">Current Count @Count</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code{
+
+    private int Count { get; set; } = 0;
+
+    [Inject]
+    public BlocBuilder<CountCubit, CountState> Builder { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Builder.Bloc.OnStateChanged += UpdateState;
+        base.OnInitialized();
+    }
+
+    private void UpdateState(CountState newState)
+    {
+        Count = newState.Count;
+        StateHasChanged();
+    }
+
+}

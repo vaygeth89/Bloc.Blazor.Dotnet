@@ -1,0 +1,29 @@
+﻿@page "/counter"
+@using Bloc.Models
+@using Bloc.Blazor.Example.Blocs
+@using Bloc.Blazor.Example.States
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+
+<button class="btn btn-primary" @onclick="IncrementCount">Increment Count</button>
+<button class="btn btn-primary" @onclick="DecrementCount">Decrement Count</button>
+
+@code {
+
+    [Inject]
+    private BlocBuilder<CountCubit, CountState> Builder { get; set; }
+
+    private void IncrementCount()
+    {
+        Builder.Bloc.Increment();
+    }
+
+    private void DecrementCount()
+    {
+        Builder.Bloc.Decrement();
+    }
+
+}

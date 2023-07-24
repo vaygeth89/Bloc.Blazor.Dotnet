@@ -1,0 +1,31 @@
+﻿@page "/"
+@using Bloc.Blazor.Components
+@using Bloc.Blazor.Example.Blocs
+@using Bloc.Blazor.Example.States
+@implements IDisposable
+
+<PageTitle>Index</PageTitle>
+
+<div>
+    <h1>Welcome To Bloc Blazor</h1>
+    <h3>Current Count @Count</h3>
+</div>
+
+<BlocStateListener TBloc="CountCubit" TState="CountState" OnInitializeState="ListenToChanges" OnStateChange="ListenToChanges">
+
+</BlocStateListener>
+
+@code{
+    private int Count { get; set; } = 0;
+
+    private void ListenToChanges(CountState newState)
+    {
+        Count = newState.Count;
+    }
+
+    void IDisposable.Dispose()
+    {
+    //Do your builder disposing here
+    }
+
+}
