@@ -8,13 +8,11 @@ public partial class BlocStateListener<TBloc, TState> : ComponentBase
 {
     [Parameter] public RenderFragment? ChildContent { get; set; } = default!;
     [Inject] protected BlocBuilder<TBloc, TState> Builder { get; set; }
-    [Parameter] public EventCallback<TState> OnInitializeState { get; set; }
     [Parameter] public EventCallback<TState> OnStateChange { get; set; }
 
     protected override void OnInitialized()
     {
         Builder.Bloc.OnStateChanged += ListenToChanges;
-        OnInitializeState.InvokeAsync(Builder.State);
         base.OnInitialized();
     }
 
