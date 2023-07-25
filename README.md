@@ -90,14 +90,6 @@ public class CountCubit : Cubit<CountState>
     await builder.Build().RunAsync();
 ```
 
-#### Using BLocBuilder
-Inject your builder in your component specifying the the BLoC/Cubit and State
-
-```csharp
-    [Inject]
-    private BlocBuilder<CountCubit, CountState> Builder { get; set; }
-```
-
 #### Handling Events
 You can use the **Builder** to invoke the desired events, in this example **Increment**/**Decrement**
 
@@ -110,8 +102,57 @@ You can use the **Builder** to invoke the desired events, in this example **Incr
 
 #### Listening to State Changes
 
+You have two options when it comes to listening to State changes:
 
-#### Using BlocListener
+1- Using BlocBuilder
+2- Using BlocListener Razor Component
+
+You can use whatever convenient
+
+### Using BlocBuilder Class
+You can register the listener in your OnInitialized method
+#### Using BLocBuilder
+In your Razor C# Class Component (Count.razor.cs)
+
+Inject your builder in your component specifying the the BLoC/Cubit and State and listen to the changes
+
+```csharp
+[Inject]
+private BlocBuilder<CountCubit, CountState> Builder { get; set; }
+
+protected override void OnInitialized(){
+   // Rest of the code
+   // Here we are listenting to the changes and passing the new state to our listner method **ListenToChanges** 
+   Builder.Bloc.OnStateChanged+= ListenToChanges;
+   // Rest of the code
+}
+
+private void ListenToChanges(CountState newState){
+   //Do whatever
+   //Choose when you want to rebuild the UI
+   StateHasChanged();
+}
+
+```
+
+
+#### Using BlocListener Blazor Component
+The second method, is just to Use the BlocStateListner Razor Component and Listen to it using **ListenToChanges**
+
+In your Razor Component (Count.razor)
+```html
+
+<div>
+    <h1>Welcome To Bloc Blazor</h1>
+    <h3>Current Count @Count</h3>
+</div>
+
+<BlocStateListener TBloc="CountCubit" TState="CountState" OnInitializeState="ListenToChanges" OnStateChange="ListenToChanges">
+
+</BlocStateListener>
+
+```
+
 
 ### Disclosure & Notes
 
