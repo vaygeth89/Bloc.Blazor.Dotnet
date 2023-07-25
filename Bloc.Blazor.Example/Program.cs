@@ -12,7 +12,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 
 builder.Services.AddScoped<IReportService, ReportService>();
-// Inject it as AddTransient if you want to clear the state (disposed)
+// Inject it as AddTransient if you want to dispose it and not maintain it during session
+// example when you navigate between pages you may dont want to remember the state
 builder.Services.AddTransient(sp => new BlocBuilder<ReportCubit, ReportState>(new(sp.GetService<IReportService>())));
 
 // Inject it as AddScoped if you want to share it across the session
