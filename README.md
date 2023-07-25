@@ -104,8 +104,8 @@ You can use the **Builder** to invoke the desired events, in this example **Incr
 
 You have two options when it comes to listening to State changes:
 
-1- Using BlocBuilder
-2- Using BlocListener Razor Component
+* Using BlocBuilder
+* Using BlocListener Razor Component
 
 You can use whatever convenient
 
