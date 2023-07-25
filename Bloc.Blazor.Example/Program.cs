@@ -12,7 +12,10 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 
 builder.Services.AddScoped<IReportService, ReportService>();
-builder.Services.AddScoped(sp => new BlocBuilder<ReportCubit, ReportState>(new(sp.GetService<IReportService>())));
+// Inject it as AddTransient if you want to clear the state (disposed)
+builder.Services.AddTransient(sp => new BlocBuilder<ReportCubit, ReportState>(new(sp.GetService<IReportService>())));
+
+// Inject it as AddScoped if you want to share it across the session
 builder.Services.AddScoped(sp => new BlocBuilder<CountCubit, CountState>(new()));
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
