@@ -13,6 +13,7 @@ public partial class BlocStateListener<TBloc, TState> : ComponentBase
     protected override void OnInitialized()
     {
         Builder.Bloc.OnStateChanged += ListenToChanges;
+        OnStateChange.InvokeAsync(Builder.State);
         base.OnInitialized();
     }
 
