@@ -1,0 +1,49 @@
+@page "/reports"
+@using Bloc.Models
+@using Bloc.Blazor.Example.Blocs
+@using Bloc.Blazor.Example.States
+@{
+    if (ReportBuilder.State is ReportInitial || ReportBuilder.State is ReportFirstTimeLoading)
+    {
+        <h3>Data is Being Loaded please wait</h3>
+    }
+    else if (ReportBuilder.State is ReportIsLoaded)
+    {
+        <ol>
+            @{
+                var reports = (ReportBuilder.State as ReportIsLoaded).Reports;
+                for (int index = 0; index < reports.Count(); index++)
+                {
+                    <li>
+                        <h4>@reports[index]</h4>
+                    </li>
+                }
+            }
+
+        </ol>
+    }
+}
+
+@code {
+
+    [Inject]
+    BlocBuilder<ReportCubit, ReportState> ReportBuilder { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ReportBuilder.Bloc.LoadReports();
+        base.OnInitialized();
+        ReportBuilder.Bloc.OnStateChanged += ListenToChanged;
+    }
+
+    private void ListenToChanged(ReportState newState)
+    {
+        StateHasChanged();
+    }
+
+    public void DeleteReport(int index)
+    {
+        ReportBuilder.Bloc.DeleteReport(index);
+    }
+
+}
