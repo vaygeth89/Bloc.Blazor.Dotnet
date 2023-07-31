@@ -83,7 +83,13 @@ public class CountCubit : Cubit<CountState>
     // rest of the code....
     // ...
 
+    // add as transient if you want it to be remembered across the current context 
+    // and disposed manually 
     builder.Services.AddScoped(sp => new BlocBuilder<CountCubit, CountState>(new CountCubit()));
+
+    // add as transient if you want it to be disposed upon disposing the component
+    // builder.Services.AddTransient(sp => new BlocBuilder<CountCubit, CountState>(new CountCubit()));
+    
     // rest of the code....
     // ...
 
