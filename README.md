@@ -152,7 +152,8 @@ In your Razor Component (Count.razor)
 </BlocStateListener>
 
 ```
-
+### Advanced Use-case
+Refer to the example code
 
 ### Disclosure & Notes
 
