@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Vaygeth.Bloc.Blazor</PackageId>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <Authors>Abdulmohsen Alkhamees</Authors>
     <Company>Abdulmohsen Alkhamees</Company>
     <RepositoryUrl>https://github.com/vaygeth89/Bloc.Blazor.Dotnet</RepositoryUrl>
@@ -15,7 +15,7 @@
   <ItemGroup>
   <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.5" />
   <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.5" PrivateAssets="all" />
-  <PackageReference Include="Vaygeth.Bloc" Version="1.0.1" PrivateAssets="all" />
+  <PackageReference Include="Vaygeth.Bloc" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
   
 </Project>
